@@ -23,10 +23,11 @@ export default class Uploader {
   uploadSelectedFile({ onPreview }) {
     ajax.transport({
       url: this.config.endpoint,
+      data: this.config.additionalRequestData,
       accept: this.config.types,
       beforeSend: () => onPreview(),
       fieldName: this.config.field,
-      headers: this.config.additionalRequestHeaders || {},
+      headers: this.config.additionalRequestHeaders || {}
     }).then((response) => {
       this.onUpload(response);
     }).catch((error) => {
